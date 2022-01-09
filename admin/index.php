@@ -3,7 +3,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<?php include "connection.php" ;  ?>
+<?php include "../user/connection.php" ;  ?>
 
 <!DOCTYPE html>
 <html>
@@ -55,7 +55,7 @@
                 $password = mysqli_escape_string($link,$_POST["password"]);
 
                 $count = 0 ;
-                $res=mysqli_query($link,"select * from user_registration where username='$username' && password='$password' && role='user' && status='active'");
+                $res=mysqli_query($link,"select * from user_registration where username='$username' && password='$password' && role='admin' && status='active'");
                 $count=mysqli_num_rows($res);
 
                 if($count>0){ ?>
