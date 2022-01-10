@@ -61,7 +61,7 @@
                 if($count>0){ ?>
 
                     <script type="text/javascript" >
-                        window.location="demo.php" ;
+                        window.location="add_new_user .php" ;
                     </script>
 
                 <?php }else{ ?>

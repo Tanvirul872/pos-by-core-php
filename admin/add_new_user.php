@@ -45,19 +45,7 @@
                           <option>User</option>  
                         </select>
                       </div>
-                    
-                      <!-- <div class="form-group">
-                        <label>File upload</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                          <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                          </span>
-                        </div>
-                      </div>   -->
 
-                
                       <button type="submit" class="btn btn-primary mr-2" name="submit1">Submit</button>
                     
                        <div class="alert alert-danger mt-2" id="error" style="display:none">
@@ -76,8 +64,9 @@
 
 
                 </div>
-                <?php 
-        if(isset($_POST['submit1'])){
+
+                <?php
+              if(isset($_POST['submit1'])){
             $count =0; 
             $res = mysqli_query($link,"select * from user_registration where username='$_POST[username]'"); 
             $count=mysqli_num_rows($res); 
@@ -87,7 +76,9 @@
                  document.getElementById("error").style.display="block"
                 </script>
               <?php }else{
-                  mysqli_query($link,"INSERT INTO `user_registration`(`id`, `firstname`, `lastname`, `username`, `password`, `role`, `status`) VALUES (NULL,'$_POST[firstname]','$_POST[lastname]','$_POST[username]','$_POST[password]','$_POST[role]','active')"); 
+
+                  $role = lcfirst("$_POST[role]");
+                  mysqli_query($link,"INSERT INTO `user_registration`(`id`, `firstname`, `lastname`, `username`, `password`, `role`, `status`) VALUES (NULL,'$_POST[firstname]','$_POST[lastname]','$_POST[username]','$_POST[password]','$role ','active')");
               }?> 
                 <script type="text/javascript">
                    document.getElementById("success").style.display="block"
@@ -121,6 +112,7 @@
                             <?php 
                               $res=mysqli_query($link,"select * from user_registration");
                               $row=mysqli_fetch_assoc($res); 
+
                             //   echo "<pre>";
                             //   print_r($row); 
                             //   echo "</pre>";
@@ -133,16 +125,13 @@
                             <td> <?= $row['lastname'];?> </td>
                             <td> <?= $row['username'];?> </td>
                             <td> <?= $row['role'];?> </td>
-                            <td> <a href=""> Edit </a></td>
+                            <td> <a href="edit_user.php?id=<?php echo $row['id'];?>"> Edit </a></td>
                             <td> <a href="delete_user.php?id=<?php echo $row['id'];?>"> Delete </a></td>
                           </tr>  
                             
                             <?php }  ?>
 
-                         
 
-                          
-                         
                         </tbody>
                       </table>
                     </div>
