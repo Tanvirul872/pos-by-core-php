@@ -91,7 +91,6 @@ include "../user/connection.php";
                             //   echo "</pre>";
 
                             while($row=mysqli_fetch_assoc($res)){ ?>
-
                                 <tr>
                                     <td> <?= $row['id'];?> </td>
                                     <td> <?= $row['company_name'];?> </td>
