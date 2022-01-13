@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2022 at 01:46 PM
+-- Generation Time: Jan 13, 2022 at 01:59 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -88,7 +88,28 @@ INSERT INTO `products` (`id`, `company_name`, `product_name`, `unit`, `packing_s
 (1, 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat'),
 (2, 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp'),
 (5, 'Tata', 'ssdsd', 's', 'sdsd'),
-(6, 'Choruighor', 'sdsdf', 'kg', 'fgfg');
+(6, 'Choruighor', 'sdsdf', 'kg', 'fgfg'),
+(7, 'Tata', 'product tata kg ', 'kg', 'ps-1'),
+(8, 'Bajaj', 'product 2', 'gm', 'ps-2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_master`
+--
+
+CREATE TABLE `purchase_master` (
+  `id` int(5) NOT NULL,
+  `company_name` varchar(100) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `unit` varchar(50) NOT NULL,
+  `packing_size` varchar(20) NOT NULL,
+  `quantity` varchar(10) NOT NULL,
+  `price` varchar(10) NOT NULL,
+  `party_name` varchar(100) NOT NULL,
+  `purchase_type` varchar(100) NOT NULL,
+  `expiry_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -162,6 +183,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `purchase_master`
+--
+ALTER TABLE `purchase_master`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
@@ -193,7 +220,13 @@ ALTER TABLE `party_info`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `purchase_master`
+--
+ALTER TABLE `purchase_master`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `unit`
