@@ -135,6 +135,23 @@
                 </a>
             </li>
 
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="stock_master.php">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title"> Stock Master </span>
+                </a>
+            </li>
+
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="sales_master.php">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title"> Sales Master </span>
+                </a>
+            </li>
 
             <li class="nav-item menu-items">
                 <a class="nav-link" href="pages/tables/basic-table.html">

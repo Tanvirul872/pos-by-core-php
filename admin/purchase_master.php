@@ -85,10 +85,8 @@ include "../user/connection.php";
                                 </div>
                                 <div class="form-group">
                                     <label> Enter Expiry Date </label>
-                                    <input type="text" name="expiry_date" placeholder="YYYY-MM-dd" required pattern="\d{4}-d{2}\d{2}"  class="form-control" >
+                                    <input type="text" name="expiry_date" placeholder="YYYY-MM-dd" required class="form-control" >
                                 </div>
-
-
 
                                 <button type="submit" class="btn btn-primary mr-2" name="submit1">Purchase Now</button>
 
@@ -144,9 +142,20 @@ include "../user/connection.php";
 
             <?php
             if(isset($_POST['submit1'])){
-                mysqli_query($link,"INSERT INTO products VALUES (NULL,'$_POST[company_name]','$_POST[product_name]','$_POST[unit]','$_POST[packing_size]')") or die (mysqli_error($link));
+                print_r($_POST);
+                mysqli_query($link,"INSERT INTO purchase_master VALUES (NULL,'$_POST[company_name]','$_POST[product_name]','$_POST[unit]','$_POST[packing_size]','$_POST[qty]','$_POST[price]','$_POST[party_name]','$_POST[purchase_type]','$_POST[expiry_date]')") or die (mysqli_error($link));
 
+                $count=0;
+                $res=mysqli_query($link,"select * from stock_master where product_company='$_POST[company_name]' && product_name='$_POST[product_name]' && product_unit='$_POST[unit]'");
+                $count = mysqli_num_rows($res);
+
+                if($count==0){
+                    mysqli_query($link,"insert into stock_master values (NULL,'$_POST[company_name]','$_POST[product_name]','$_POST[unit]','$_POST[packing_size]','$_POST[qty]','0')") or die(mysqli_error($link));
+                }else{
+                    mysqli_query($link,"update stock_master set product_qty = product_qty + $_POST[qty] where product_company='$_POST[company_name]' && product_name='$_POST[product_name]' && product_unit='$_POST[unit]'") or die(mysqli_error($link));
+                }
                 ?>
+
                 <script type="text/javascript">
                     document.getElementById("success").style.display="block"
                     setTimeout(function(){
