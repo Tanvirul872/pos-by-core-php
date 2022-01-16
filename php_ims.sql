@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2022 at 01:59 PM
+-- Generation Time: Jan 16, 2022 at 01:37 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -90,7 +90,8 @@ INSERT INTO `products` (`id`, `company_name`, `product_name`, `unit`, `packing_s
 (5, 'Tata', 'ssdsd', 's', 'sdsd'),
 (6, 'Choruighor', 'sdsdf', 'kg', 'fgfg'),
 (7, 'Tata', 'product tata kg ', 'kg', 'ps-1'),
-(8, 'Bajaj', 'product 2', 'gm', 'ps-2');
+(8, 'Bajaj', 'product 2', 'gm', 'ps-2'),
+(9, 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp');
 
 -- --------------------------------------------------------
 
@@ -108,8 +109,43 @@ CREATE TABLE `purchase_master` (
   `price` varchar(10) NOT NULL,
   `party_name` varchar(100) NOT NULL,
   `purchase_type` varchar(100) NOT NULL,
-  `expiry_date` date NOT NULL
+  `expiry_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `purchase_master`
+--
+
+INSERT INTO `purchase_master` (`id`, `company_name`, `product_name`, `unit`, `packing_size`, `quantity`, `price`, `party_name`, `purchase_type`, `expiry_date`) VALUES
+(15, 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat', '123', '1234', 'choruighor', 'Debit', '2022-10-09 18:00:00'),
+(16, 'Choruighor', 'sdsdf', 'kg', 'fgfg', '34', '678', 'rahelar dokan updated', 'Credit', '2021-10-09 18:00:00'),
+(17, 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '12', '123', 'choruighor', 'Debit', '2022-10-09 18:00:00'),
+(18, 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '12', '123', 'choruighor', 'Debit', '2022-10-09 18:00:00'),
+(19, 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat', '23', '45', 'কিরন্মিয়া', 'Debit', '2022-10-09 18:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_master`
+--
+
+CREATE TABLE `stock_master` (
+  `id` int(5) NOT NULL,
+  `product_company` varchar(100) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `product_unit` varchar(50) NOT NULL,
+  `packing_size` varchar(100) NOT NULL,
+  `product_qty` varchar(5) NOT NULL,
+  `product_selling_price` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `stock_master`
+--
+
+INSERT INTO `stock_master` (`id`, `product_company`, `product_name`, `product_unit`, `packing_size`, `product_qty`, `product_selling_price`) VALUES
+(4, 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '12', '123'),
+(5, 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat', '23', '456');
 
 -- --------------------------------------------------------
 
@@ -189,6 +225,12 @@ ALTER TABLE `purchase_master`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `stock_master`
+--
+ALTER TABLE `stock_master`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
@@ -220,13 +262,19 @@ ALTER TABLE `party_info`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `purchase_master`
 --
 ALTER TABLE `purchase_master`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `stock_master`
+--
+ALTER TABLE `stock_master`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `unit`
