@@ -22,6 +22,7 @@ function check_qty($product_company,$product_name,$product_unit,$packing_size,$l
 function check_duplicate_product($product_company,$product_name,$product_unit,$packing_size){
     $found=0;
     $max = sizeof($_SESSION['cart']);
+
     for($i=0;$i<$max;$i++){
         if(isset($_SESSION['cart'][$i])){
             $company_name_session = "";
@@ -51,6 +52,8 @@ function check_duplicate_product($product_company,$product_name,$product_unit,$p
     }
     return $found;
 }
+
+
 
 function check_the_qty($product_company,$product_name,$product_unit,$packing_size){
 
@@ -94,7 +97,7 @@ function check_the_qty($product_company,$product_name,$product_unit,$packing_siz
 
 }
 
-function check_product_no_coockies($product_company,$product_name,$product_unit,$packing_size){
+function check_product_no_cookies($product_company,$product_name,$product_unit,$packing_size){
 
     $recordno =0;
     $max = sizeof($_SESSION['cart']);
