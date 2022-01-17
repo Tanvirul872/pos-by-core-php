@@ -130,7 +130,7 @@ include "../user/connection.php";
                                         <div class="form-group row">
                                             <label class="col-form-label">  Button </label>
                                             <div class="col-sm-12">
-                                                <input type="submit" class="btn btn-success" value="Add">
+                                                <input type="submit" class="btn btn-success" value="Add" onclick="add_session();">
                                             </div>
                                         </div>
                                     </div>
@@ -255,10 +255,27 @@ include "../user/connection.php";
     }
 
     function generate_total(qty){
-
         document.getElementById("total").value = eval(document.getElementById("price").value) * eval(document.getElementById("qty").value);
-
     }
+   function add_session(){
+        var product_company = document.getElementById("company_name").value;
+        var product_name = document.getElementById("product_name").value;
+        var unit = document.getElementById("unit").value;
+        var packing_size = document.getElementById("packing_size").value;
+        var price = document.getElementById("price").value;
+        var qty = document.getElementById("qty").value;
+        var total = document.getElementById("total").value;
+
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange =function(){
+           if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
+              alert(xmlhttp.responseText);
+           }
+       };
+       xmlhttp.open("GET","forajax/save_in_session.php?company_name="+product_company+"&product_name="+product_name+"&unit="+unit+"&packing_size="+packing_size+"&price="+price+"&qty="+qty+"&total="+total,true);
+       xmlhttp.send();
+
+   }
 
 </script>
 
