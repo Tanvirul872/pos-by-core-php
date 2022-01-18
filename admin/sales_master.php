@@ -257,6 +257,8 @@ include "../user/connection.php";
     function generate_total(qty){
         document.getElementById("total").value = eval(document.getElementById("price").value) * eval(document.getElementById("qty").value);
     }
+
+
    function add_session(){
         var product_company = document.getElementById("company_name").value;
         var product_name = document.getElementById("product_name").value;

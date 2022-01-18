@@ -13,8 +13,8 @@ $total= $_GET["total"];
 if(isset($_SESSION['cart'])){
 
     $max = sizeof($_SESSION['cart']);
-    $check_available =0;
-    $check_available =check_duplicate_product($company_name,$product_name,$unit,$packing_size);
+    $check_available = 0;
+    $check_available = check_duplicate_product($company_name,$product_name,$unit,$packing_size);
     $availabe_qty = 0;
     $check_the_qty = 0;
 
@@ -101,7 +101,6 @@ function check_duplicate_product($product_company,$product_name,$product_unit,$p
 
 function check_the_qty($product_company,$product_name,$product_unit,$packing_size){
 
-
     $qty_found =0;
     $qty_session =0;
     $max = sizeof($_SESSION['cart']);
@@ -113,7 +112,6 @@ function check_the_qty($product_company,$product_name,$product_unit,$packing_siz
         $packing_size_session = "";
 
         if(isset($_SESSION['cart'][$i])){
-
             foreach($_SESSION['cart'][$i] as $key=>$val){
                 if($key=="company_name"){
                     $company_name_session =$val ;
@@ -138,11 +136,9 @@ function check_the_qty($product_company,$product_name,$product_unit,$packing_siz
         }
     }
     return $qty_found;
-
 }
 
 function check_product_no_session($product_company,$product_name,$product_unit,$packing_size){
-
     $recordno =0;
     $max = sizeof($_SESSION['cart']);
     for($i=0;$i<$max;$i++){
@@ -175,7 +171,5 @@ function check_product_no_session($product_company,$product_name,$product_unit,$
     return $recordno;
 
 }
-
-
 
 ?>
