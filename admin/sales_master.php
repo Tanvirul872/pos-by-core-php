@@ -273,7 +273,7 @@ include "../user/connection.php";
                if(xmlhttp.responseText==""){
                    alert("product added successfully");
                }else{
-                   alert("xmlhttp.responseText");
+                   alert(xmlhttp.responseText);
                }
 
            }
