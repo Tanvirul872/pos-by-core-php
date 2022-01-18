@@ -269,7 +269,13 @@ include "../user/connection.php";
        var xmlhttp = new XMLHttpRequest();
        xmlhttp.onreadystatechange =function(){
            if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
-              alert(xmlhttp.responseText);
+
+               if(xmlhttp.responseText==""){
+                   alert("product added successfully");
+               }else{
+                   alert("xmlhttp.responseText");
+               }
+
            }
        };
        xmlhttp.open("GET","forajax/save_in_session.php?company_name="+product_company+"&product_name="+product_name+"&unit="+unit+"&packing_size="+packing_size+"&price="+price+"&qty="+qty+"&total="+total,true);
