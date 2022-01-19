@@ -146,43 +146,12 @@ include "../user/connection.php";
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">All Sales </h4>
-                            <div class="table-responsive">
-                                <table class="table table-dark">
-                                    <thead>
-                                    <tr>
-                                        <th> Id </th>
-                                        <th> Product Category </th>
-                                        <th> Product Name </th>
-                                        <th> Product Unit </th>
-                                        <th> Product Size </th>
-                                        <th> Product Price </th>
-                                        <th> Product Quantity </th>
-                                        <th> Total </th>
-                                        <th> Edit </th>
-                                        <th> Delete </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <tr>
-                                        <td>  # </td>
-                                        <td>  Product Category </td>
-                                        <td> Name  </td>
-                                        <td> Unit </td>
-                                        <td>Size  </td>
-                                        <td> Price  </td>
-                                        <td> Quantity</td>
-                                        <td> Total</td>
-                                        <td> <a href="edit_stock_master.php?id=<?php echo $row['id'];?>"> Edit </a></td>
-                                        <td> <a href="edit_stock_master.php?id=<?php echo $row['id'];?>"> Delete </a></td>
-
-                                    </tr>
+                            <h4 class="card-title"> Taken Products </h4>
+                            <div id="bill_products">  </div>
 
 
-                                    </tbody>
-                                </table>
-                            </div>
+                            <h4 class="card-title"> Total Price <span id="totalbill"> 0  </span> </h4>
+
                         </div>
                     </div>
                 </div>
@@ -273,8 +242,10 @@ include "../user/connection.php";
            if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
 
                if(xmlhttp.responseText==""){
+                   load_billing_products(); 
                    alert("product added successfully");
                }else{
+                   load_billing_products(); 
                    alert(xmlhttp.responseText);
                }
 
@@ -284,6 +255,34 @@ include "../user/connection.php";
        xmlhttp.send();
 
    }
+
+   function load_billing_products(){
+       
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange =function(){
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
+                document.getElementById("bill_products").innerHTML=xmlhttp.responseText;
+                load_total_bill(); 
+            }
+        };
+        xmlhttp.open("GET","forajax/load_billing_products.php",true);
+        xmlhttp.send(); 
+
+   }
+
+   function load_total_bill(){ 
+    var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange =function(){
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
+                document.getElementById("totalbill").innerHTML=xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET","forajax/load_billing_amount.php",true);
+        xmlhttp.send(); 
+
+   }
+
+   load_billing_products(); 
 
 </script>
 

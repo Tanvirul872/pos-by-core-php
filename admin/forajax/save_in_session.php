@@ -15,14 +15,14 @@ if(isset($_SESSION['cart'])){
     $max = sizeof($_SESSION['cart']);
     $check_available = 0;
     $check_available = check_duplicate_product($company_name,$product_name,$unit,$packing_size);
-    $availabe_qty = 0;
+    $available_qty = 0;
     $check_the_qty = 0;
 
     if($check_available==0){
            $available_qty= check_qty($company_name,$product_name,$unit,$packing_size,$link);
            if($available_qty>=$qty){
                $b =array("company_name"=>$company_name,"product_name"=>$product_name,"unit"=>$unit,"packing_size"=>$packing_size,"price"=>$price,"qty"=>$qty);
-               array_push($_SESSION['cart'][$b]);
+               array_push($_SESSION['cart'],$b);
 
            }else{
                echo "Entered qty is not available";
@@ -34,16 +34,15 @@ if(isset($_SESSION['cart'])){
         $exist_qty =0;
         $exist_qty = check_the_qty($company_name,$product_name,$unit,$packing_size);
         $exist_qty=$exist_qty+$qty;
-        $av_qty=check_qty($company_name,$product_name,$unit,$packing_size,$link);
+        $av_qty= check_qty($company_name,$product_name,$unit,$packing_size,$link);
         if($av_qty>=$exist_qty){
            $check_product_no_session = check_product_no_session($company_name,$product_name,$unit,$packing_size);
-            $b =array("company_name"=>$company_name,"product_name"=>$product_name,"unit"=>$unit,"packing_size"=>$packing_size,"price"=>$price,"qty"=>$qty);
+            $b =array("company_name"=>$company_name,"product_name"=>$product_name,"unit"=>$unit,"packing_size"=>$packing_size,"price"=>$price,"qty"=>$exist_qty);
             $_SESSION['cart'][$check_product_no_session] = $b;
         }else{
             echo "Entered quantity is not available";
         }
     }
-
 
 }else{
     $available_qty = check_qty($company_name,$product_name,$unit,$packing_size,$link);
@@ -63,12 +62,15 @@ function check_qty($product_company,$product_name,$product_unit,$packing_size,$l
    return $product_qty ;
 }
 
+
+
 function check_duplicate_product($product_company,$product_name,$product_unit,$packing_size){
     $found=0;
     $max = sizeof($_SESSION['cart']);
 
     for($i=0;$i<$max;$i++){
         if(isset($_SESSION['cart'][$i])){
+
             $company_name_session = "";
             $product_name_session = "";
             $unit_session = "";
@@ -88,7 +90,7 @@ function check_duplicate_product($product_company,$product_name,$product_unit,$p
                     $packing_size_session=$val;
                 }
             }
-          if($company_name_session=$product_company && $product_name_session=$product_name && $unit_session=$product_unit && $packing_size_session=$packing_size  ){
+          if($company_name_session==$product_company && $product_name_session==$product_name && $unit_session==$product_unit && $packing_size_session==$packing_size ){
               $found = $found+1;
           }
 
@@ -114,7 +116,7 @@ function check_the_qty($product_company,$product_name,$product_unit,$packing_siz
         if(isset($_SESSION['cart'][$i])){
             foreach($_SESSION['cart'][$i] as $key=>$val){
                 if($key=="company_name"){
-                    $company_name_session =$val ;
+                    $company_name_session = $val ;
                 }
                 else if($key=="product_name"){
                     $product_name_session=$val;
@@ -129,7 +131,7 @@ function check_the_qty($product_company,$product_name,$product_unit,$packing_siz
                     $qty_session=$val;
                 }
             }
-            if($company_name_session=$product_company && $product_name_session=$product_name && $unit_session=$product_unit && $packing_size_session=$packing_size  ){
+            if($company_name_session==$product_company && $product_name_session==$product_name && $unit_session==$product_unit && $packing_size_session==$packing_size  ){
                 $qty_found = $qty_session;
             }
 
@@ -162,14 +164,13 @@ function check_product_no_session($product_company,$product_name,$product_unit,$
                     $packing_size_session=$val;
                 }
             }
-            if($company_name_session=$product_company && $product_name_session=$product_name && $unit_session=$product_unit && $packing_size_session=$packing_size  ){
+            if($company_name_session==$product_company && $product_name_session== $product_name && $unit_session==$product_unit && $packing_size_session==$packing_size  ){
                 $recordno = $i;
             }
 
         }
     }
     return $recordno;
-
 }
 
 ?>
