@@ -242,10 +242,12 @@ include "../user/connection.php";
            if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
 
                if(xmlhttp.responseText==""){
-                   load_billing_products(); 
+                   load_billing_products();
+                   load_total_bill();
                    alert("product added successfully");
                }else{
-                   load_billing_products(); 
+                   load_billing_products();
+                   load_total_bill();
                    alert(xmlhttp.responseText);
                }
 
@@ -262,7 +264,7 @@ include "../user/connection.php";
         xmlhttp.onreadystatechange =function(){
             if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
                 document.getElementById("bill_products").innerHTML=xmlhttp.responseText;
-                load_total_bill(); 
+                load_total_bill();
             }
         };
         xmlhttp.open("GET","forajax/load_billing_products.php",true);
@@ -281,6 +283,7 @@ include "../user/connection.php";
         xmlhttp.send(); 
 
    }
+
 
    load_billing_products(); 
 

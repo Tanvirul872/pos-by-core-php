@@ -25,18 +25,25 @@ for($i=0;$i<$max;$i++){
                 $price_session =$val;
             }
 
-        } 
+        }
 
-        $gtotal=($qty_session*$price_session);
-
+        $gtotal=$gtotal+($qty_session*$price_session);
     }
 }
- 
+
+//echo $price_session;
+//echo "</br>";
+//echo $qty_session;
+//echo "</br>";
+
+
 echo $gtotal;
 
-?>          
-          
-          
+?>
+
+
+
+
       
 
                   

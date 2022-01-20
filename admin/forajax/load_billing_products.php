@@ -30,7 +30,9 @@ if(isset($_SESSION['cart'])){
 }
 
 
-$max = sizeof($_SESSION['cart']);
+//$max = sizeof($_SESSION['cart']);
+
+
 for($i=0;$i<$max;$i++){
 
     $company_name_session = "";
@@ -71,7 +73,8 @@ for($i=0;$i<$max;$i++){
         <td>  <?php echo $packing_size_session;  ?> </td> 
         <td>  <?php echo $price_session;  ?> </td>
         <td>  <?php echo $qty_session;  ?> </td>
-        <td>  <?php echo ($qty_session * $price_session  );  ?> </td>
+        <?php  $totalbill = $qty_session * $price_session; ?>
+        <td>  <?php echo $totalbill;  ?> </td>
         <td> <a href="edit_stock_master.php?id=<?php echo $row['id'];?>"> Edit </a></td>
         <td> <a href="edit_stock_master.php?id=<?php echo $row['id'];?>"> Delete </a></td>
 
@@ -84,11 +87,6 @@ for($i=0;$i<$max;$i++){
  
 
 ?>          
-          
-          
-      
-
-                  
 
 
                     </tbody>
