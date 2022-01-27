@@ -27,7 +27,7 @@ for($i=0;$i<$max;$i++){
 
         }
 
-        $gtotal=$gtotal+($qty_session*$price_session);
+        $gtotal=$gtotal+($qty_session*$price_session); 
     }
 }
 

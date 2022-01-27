@@ -63,7 +63,10 @@ for($i=0;$i<$max;$i++){
                 $price_session =$val;
             }
 
-        } ?> 
+        }  
+        if($company_name_session != ""){
+            ?>
+  
 
         <tr>
         <td>  # </td>
@@ -75,12 +78,13 @@ for($i=0;$i<$max;$i++){
         <td>  <input type="text" id="tt<?php echo $i; ?>" value="<?php echo $qty_session; ?>" > <i class="fa fa-refresh" aria-hidden="true"></i> <a class="btn btn-success" onclick="edit_qty(document.getElementById('tt<?php echo $i; ?>').value,'<?php echo $company_name_session ; ?>','<?php echo $product_name_session; ?>','<?php echo $unit_session; ?>','<?php echo $packing_size_session; ?>','<?php echo $price_session; ?>')">Refresh</a>  </td>
         <?php  $totalbill = $qty_session * $price_session; ?>
         <td>  <?php echo $totalbill;  ?> </td>
-        <td> <a href="edit_stock_master.php?id=<?php echo $row['id'];?>"> Delete </a></td>
+        <td style="color:red; cursor:pointer;" onclick="delete_qty(<?php echo $i; ?>)"> Delete </td>
 
     </tr>
 
     <?php
 
+       }
     }
 }
  

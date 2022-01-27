@@ -10,7 +10,6 @@ $price = $_GET["price"];
 $qty = $_GET["qty"];
 $total= $_GET["total"];
 
-
         $av_qty = 0;
         $exist_qty =0;
         $exist_qty =0;
@@ -25,7 +24,6 @@ $total= $_GET["total"];
             echo "Entered quantity is not available";
         }
 
-        
 function check_qty($product_company,$product_name,$product_unit,$packing_size,$link){
     $product_qty = 0;
     $res=mysqli_query($link, "select * from stock_master where product_company='$product_company' && product_name='$product_name' && product_unit='$product_unit'  && packing_size ='$packing_size' ");

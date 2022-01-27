@@ -316,8 +316,28 @@ function edit_qty(qty1,company_name1,product_name1,unit1,packing_size1,price1){
        xmlhttp.open("GET","forajax/update_in_session.php?company_name="+product_company+"&product_name="+product_name+"&unit="+unit+"&packing_size="+packing_size+"&price="+price+"&qty="+qty+"&total="+total,true);
        xmlhttp.send();
 
+}
 
+function delete_qty(sessionid){
+  
 
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange =function(){
+           if(xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
+
+               if(xmlhttp.responseText==""){
+                   load_billing_products();
+                
+                   alert("product updated successfully");
+               }else{
+                   load_billing_products();
+                   alert(xmlhttp.responseText);
+               }
+
+           }
+       };
+       xmlhttp.open("GET","forajax/delete_in_session.php?sessionid="+sessionid,true);
+       xmlhttp.send(); 
 }
 
 </script>
