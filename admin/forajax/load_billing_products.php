@@ -13,7 +13,7 @@ session_start();  ?>
                         <th> Product Price </th>
                         <th> Product Quantity </th>
                         <th> Total </th>
-                        <th> Edit </th>
+                       
                         <th> Delete </th>
                     </tr>
                     </thead>
@@ -72,10 +72,9 @@ for($i=0;$i<$max;$i++){
         <td>  <?php echo $unit_session;  ?> </td>
         <td>  <?php echo $packing_size_session;  ?> </td> 
         <td>  <?php echo $price_session;  ?> </td>
-        <td>  <?php echo $qty_session;  ?> </td>
+        <td>  <input type="text" id="tt<?php echo $i; ?>" value="<?php echo $qty_session; ?>" > <i class="fa fa-refresh" aria-hidden="true"></i> <a class="btn btn-success" onclick="edit_qty(document.getElementById('tt<?php echo $i; ?>').value,'<?php echo $company_name_session ; ?>','<?php echo $product_name_session; ?>','<?php echo $unit_session; ?>','<?php echo $packing_size_session; ?>','<?php echo $price_session; ?>')">Refresh</a>  </td>
         <?php  $totalbill = $qty_session * $price_session; ?>
         <td>  <?php echo $totalbill;  ?> </td>
-        <td> <a href="edit_stock_master.php?id=<?php echo $row['id'];?>"> Edit </a></td>
         <td> <a href="edit_stock_master.php?id=<?php echo $row['id'];?>"> Delete </a></td>
 
     </tr>
