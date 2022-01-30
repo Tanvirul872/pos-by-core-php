@@ -1,13 +1,20 @@
 <?php
+session_start(); 
 include "header.php";
 include "../user/connection.php";
+$bill_id = 0; 
+$res = mysqli_query($link,"select * from billing_header order by id desc limit 1"); 
+while($row = mysqli_fetch_assoc($res)){
+    $bill_id = $row["id"]; 
+}
+
 ?>
 
     <!-- partial -->
     <div class="main-panel">
         <div class="content-wrapper">
 
-
+        <form class="form-sample" name="form1" action="" method="post">
             <div class="row">
                 Sales master
 
@@ -17,7 +24,7 @@ include "../user/connection.php";
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Horizontal Two column</h4>
-                            <form class="form-sample">
+                            
                                 <p class="card-description"> Personal info </p>
                                 <div class="row">
 
@@ -25,7 +32,7 @@ include "../user/connection.php";
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Full  Name</label>
                                             <div class="col-sm-12">
-                                                <input type="text" class="form-control" />
+                                                <input type="text" name="full_name" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
@@ -34,7 +41,7 @@ include "../user/connection.php";
                                         <div class="form-group row">
                                             <label class="col-form-label"> Bill Type </label>
 
-                                                <select class="form-control">
+                                                <select class="form-control" name="bill_type_header">
                                                     <option> bill 1 </option>
                                                     <option> bill 2</option>
 
@@ -46,12 +53,22 @@ include "../user/connection.php";
 
                                     <div class="col-md-4">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Last Name</label>
+                                            <label class="col-sm-3 col-form-label">Date</label>
                                             <div class="col-sm-12">
-                                                <input type="text" class="form-control" />
+                                                <input type="date" name="bill_date" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Bill No</label>
+                                            <div class="col-sm-12">
+                                                <input type="text" name="bill_no" class="form-control" value="<?php echo generate_bill_no($bill_id); ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
 
                                 </div>
                                 <div class="row">
@@ -137,8 +154,6 @@ include "../user/connection.php";
 
                                 </div>
 
-
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -151,12 +166,15 @@ include "../user/connection.php";
 
 
                             <h4 class="card-title"> Total Price <span id="totalbill"> 0  </span> </h4>
-
+                              <div class="col-lg-12 grid-margin stretch-card">
+                             <input type="submit" name="submit1" value="Generate Bill" class="btn btn-success">   
+                           </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
+               
+            </div>  
+         </form>
     </div>
 
 <script type="text/javascript">
@@ -341,6 +359,99 @@ function delete_qty(sessionid){
 }
 
 </script>
+
+<?php  
+
+  function generate_bill_no($id){
+      if($id==""){
+        $id1 = 0; 
+      }else{
+        $id1= $id; 
+      }
+
+      $id1 = $id1+1; 
+      $len = strlen($id);  
+     if($len=="1"){
+         $id1="0000".$id1; 
+     }
+     if($len=="2"){
+        $id1="000".$id1; 
+     }
+     if($len=="3"){
+        $id1="00".$id1; 
+     }
+     if($len=="4"){
+        $id1="0".$id1; 
+     }
+     if($len=="5"){
+        $id1= $id1; 
+     }
+     return $id1; 
+
+  }
+
+  if (isset($_POST["submit1"])){
+      
+    $lastbillno = 0; 
+    mysqli_query($link,"insert into billing_header values (NULL,'$_POST[full_name]', '$_POST[bill_type_header]','$_POST[bill_date]', '$_POST[bill_no]')") or die(mysqli_error($link));     
+     $res = mysqli_query($link,"select * from billing_header order by id desc limit 1"); 
+     while($row =mysqli_fetch_assoc($res)){
+         $lastbillno = $row['id']; 
+     }
+
+     $max=sizeof($_SESSION['cart']);
+     
+for($i=0;$i<$max;$i++){
+
+    $company_name_session = "";
+    $product_name_session = "";
+    $unit_session = "";
+    $packing_size_session = "";
+    $price_session =  "";  
+
+    if(isset($_SESSION['cart'][$i])){
+        foreach($_SESSION['cart'][$i] as $key=>$val){
+            if($key=="company_name"){
+                $company_name_session =$val ;
+            }
+            else if($key=="product_name"){
+                $product_name_session=$val;
+            }
+            else if($key=="unit"){
+                $unit_session=$val;
+            }
+            else if($key=="packing_size"){
+                $packing_size_session=$val;
+            }
+            else if($key=="qty"){
+                $qty_session=$val;
+            }
+
+            else if($key=="price"){
+                $price_session =$val;
+            }
+
+        }  
+        if($company_name_session != ""){      
+            mysqli_query($link,"insert into billing_details values(NULL,'$lastbillno','$company_name_session','$product_name_session','$unit_session','$packing_size_session','$price_session','$qty_session')") or die(mysqli_error($link));  
+            mysqli_query($link,"update stock_master set product_qty=product_qty-$qty_session where product_company= '$company_name_session' && product_name = '$product_name_session'  && product_unit='$unit_session' ");
+        }
+    }
+}
+ 
+unset($_SESSION['cart']);
+?> 
+
+<script type="text/javascript">
+   alert('Bill Generated Successfully'); 
+   window.location.href = window.location.href; 
+
+</script>
+
+<?php
+  }
+
+?>
 
 
         <!-- content-wrapper ends -->

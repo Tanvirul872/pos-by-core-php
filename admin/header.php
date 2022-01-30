@@ -152,6 +152,16 @@
                     <span class="menu-title"> Sales Master </span>
                 </a>
             </li>
+            
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="view_bills.php">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title"> View Bills </span>
+                </a>
+            </li>
+
 
             <li class="nav-item menu-items">
                 <a class="nav-link" href="pages/tables/basic-table.html">
