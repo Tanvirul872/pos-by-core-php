@@ -59,6 +59,7 @@ while($row=mysqli_fetch_assoc($res)){
                     <th> Price </th>
                     <th> Qty </th>
                     <th> Total </th>                     
+                    <th> Return </th>                     
                 </tr>
                 <?php  
                    $total= 0; 
@@ -73,6 +74,7 @@ while($row=mysqli_fetch_assoc($res)){
                       echo "<td>"; echo $row["qty"];  echo"</td>";
                       echo "<td>"; echo $row["qty"]*$row["price"];  echo"</td>";
                           $total=$total+$row["qty"]*$row["price"];
+                      echo "<td>"; ?><a href="return.php?id=<?php echo $row["id"]; ?>">Return</a> <?php  echo"</td>";
                       echo "</tr>"; 
                   }
                 ?>
