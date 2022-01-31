@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 include "../user/connection.php";                
-$id=$_GET["id"];
+$id=$_GET["id"]; 
 $bill_id= ""; 
 $product_company = ""; 
 $product_name = ""; 
@@ -24,7 +24,8 @@ while($row=mysqli_fetch_assoc($res)){
 }
  
 $bill_no =""; 
-$res2 = mysqli_query($link,"select * from billing_header where id=$bill_id") ; 
+
+$res2 = mysqli_query($link,"select * from billing_header where id=$bill_id"); 
 while($row2 =mysqli_fetch_assoc($res2)){
    $bill_no= $row2["bill_no"]; 
 } 
@@ -34,11 +35,11 @@ mysqli_query($link,"insert into return_products values(NULL,'$bill_no','$today_d
 mysqli_query($link,"update stock_master set product_qty=product_qty+$qty where product_company='$product_company' && product_name='$product_name' && product_unit='$product_unit' && packing_size ='$packing_size' ");
 mysqli_query($link,"delete from billing_details where id=$id ");   
 
-?>
+?> 
 <script type="text/javascript">
     alert("Product take as a return successfully"); 
     window.location="view_bill_details.php?id=<?php echo $bill_id; ?>"
-</script>
+</script>                                                         
 
     <!-- partial -->
     <div class="main-panel">
@@ -47,8 +48,6 @@ mysqli_query($link,"delete from billing_details where id=$id ");
             <div class="row">
               View Return Products ...  
             </div>
-
-
             </div>
 
            
