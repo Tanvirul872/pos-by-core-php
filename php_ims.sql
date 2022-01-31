@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 01:55 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.30
+-- Generation Time: Jan 31, 2022 at 06:11 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,62 @@ SET time_zone = "+00:00";
 --
 -- Database: `php_ims`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `billing_details`
+--
+
+CREATE TABLE `billing_details` (
+  `id` int(5) NOT NULL,
+  `bill_id` varchar(50) NOT NULL,
+  `product_company` varchar(50) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `product_unit` varchar(20) NOT NULL,
+  `packing_size` varchar(30) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `qty` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `billing_details`
+--
+
+INSERT INTO `billing_details` (`id`, `bill_id`, `product_company`, `product_name`, `product_unit`, `packing_size`, `price`, `qty`) VALUES
+(1, '5', 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '123', '4'),
+(2, '5', 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat', '456', '10'),
+(3, '6', 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '123', '2'),
+(4, '7', 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat', '456', '10'),
+(5, '8', 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '123', '7');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `billing_header`
+--
+
+CREATE TABLE `billing_header` (
+  `id` int(5) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `bill_type` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `bill_no` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `billing_header`
+--
+
+INSERT INTO `billing_header` (`id`, `full_name`, `bill_type`, `date`, `bill_no`) VALUES
+(1, '', 'bill 1', '0000-00-00', '00001'),
+(2, '', 'bill 1', '0000-00-00', '00001'),
+(3, 'tanvirul karim', 'bill 1', '2022-01-23', '00002'),
+(4, '', 'bill 1', '0000-00-00', '00003'),
+(5, 'tanvirul karim', 'bill 1', '2022-01-08', '00005'),
+(6, '', 'bill 1', '0000-00-00', '00006'),
+(7, '', 'bill 1', '0000-00-00', '00007'),
+(8, 'abcd', 'bill 1', '2022-01-31', '00008');
 
 -- --------------------------------------------------------
 
@@ -144,8 +200,8 @@ CREATE TABLE `stock_master` (
 --
 
 INSERT INTO `stock_master` (`id`, `product_company`, `product_name`, `product_unit`, `packing_size`, `product_qty`, `product_selling_price`) VALUES
-(4, 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '12', '123'),
-(5, 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat', '23', '456');
+(4, 'Tata', 'Product Two upp', 'kg', 'packing-size-1 upp', '13', '123'),
+(5, 'Bajaj', 'Product One updated', 'uni-1', 'packing-size-1 updat', '10', '456');
 
 -- --------------------------------------------------------
 
@@ -201,6 +257,18 @@ INSERT INTO `user_registration` (`id`, `firstname`, `lastname`, `username`, `pas
 --
 
 --
+-- Indexes for table `billing_details`
+--
+ALTER TABLE `billing_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `billing_header`
+--
+ALTER TABLE `billing_header`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `company_name`
 --
 ALTER TABLE `company_name`
@@ -245,6 +313,18 @@ ALTER TABLE `user_registration`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `billing_details`
+--
+ALTER TABLE `billing_details`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `billing_header`
+--
+ALTER TABLE `billing_header`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `company_name`
