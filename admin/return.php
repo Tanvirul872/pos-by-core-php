@@ -1,3 +1,13 @@
+<?php  
+session_start();  
+if(!isset($_SESSION["admin"])){
+    ?> 
+   <script type="text/javascript">
+    window.location = "index.php" ; 
+   </script>
+   <?php
+}
+?>
 <?php
 include "header.php";
 include "../user/connection.php";                
@@ -49,7 +59,6 @@ mysqli_query($link,"delete from billing_details where id=$id ");
               View Return Products ...  
             </div>
             </div>
-
            
         </div>
 

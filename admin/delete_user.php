@@ -1,3 +1,24 @@
+<?php  
+session_start();  
+if(!isset($_SESSION["admin"])){
+    ?> 
+   <script type="text/javascript">
+    window.location = "index.php" ; 
+   </script>
+   <?php
+}
+?>
+<?php  
+session_start();  
+if(!isset($_SESSION["admin"])){
+    ?> 
+   <script type="text/javascript">
+    window.location = "index.php" ; 
+   </script>
+   <?php
+}
+?>
+
 <?php 
 
 include "../user/connection.php" ; 

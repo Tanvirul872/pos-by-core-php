@@ -1,3 +1,13 @@
+<?php  
+session_start();  
+if(!isset($_SESSION["admin"])){
+    ?> 
+   <script type="text/javascript">
+    window.location = "index.php" ; 
+   </script>
+   <?php
+}
+?>
 <?php
 include "header.php";
 include "../user/connection.php";
@@ -83,10 +93,18 @@ include "../user/connection.php";
                                         <option>Credit</option>
                                     </select>
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label> Enter Purchase Date </label>
+                                    <input type="date" name="purchase_date" placeholder="YYYY-MM-dd" required class="form-control" >
+                                </div>
+
                                 <div class="form-group">
                                     <label> Enter Expiry Date </label>
-                                    <input type="text" name="expiry_date" placeholder="YYYY-MM-dd" required class="form-control" >
+                                    <input type="date" name="expiry_date" placeholder="YYYY-MM-dd" required class="form-control" >
                                 </div>
+
+                              
 
                                 <button type="submit" class="btn btn-primary mr-2" name="submit1">Purchase Now</button>
 
@@ -142,8 +160,10 @@ include "../user/connection.php";
 
             <?php
             if(isset($_POST['submit1'])){
-                print_r($_POST);
-                mysqli_query($link,"INSERT INTO purchase_master VALUES (NULL,'$_POST[company_name]','$_POST[product_name]','$_POST[unit]','$_POST[packing_size]','$_POST[qty]','$_POST[price]','$_POST[party_name]','$_POST[purchase_type]','$_POST[expiry_date]')") or die (mysqli_error($link));
+        
+                $today_date=date("Y-m-d"); 
+
+                mysqli_query($link,"INSERT INTO purchase_master VALUES (NULL,'$_POST[company_name]','$_POST[product_name]','$_POST[unit]','$_POST[packing_size]','$_POST[qty]','$_POST[price]','$_POST[party_name]','$_POST[purchase_type]','$_POST[expiry_date]','$_POST[purchase_date]','$_POST[username]')") or die (mysqli_error($link));
 
                 $count=0;
                 $res=mysqli_query($link,"select * from stock_master where product_company='$_POST[company_name]' && product_name='$_POST[product_name]' && product_unit='$_POST[unit]'");
