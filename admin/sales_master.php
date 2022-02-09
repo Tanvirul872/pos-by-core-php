@@ -26,9 +26,7 @@ while($row = mysqli_fetch_assoc($res)){
 
         <form class="form-sample" name="form1" action="" method="post">
             <div class="row">
-                Sales master
-
-
+                Sales master              
                 <div class="col-12 grid-margin">
 
                     <div class="card">
@@ -403,7 +401,7 @@ function delete_qty(sessionid){
   if (isset($_POST["submit1"])){
       
     $lastbillno = 0; 
-    mysqli_query($link,"insert into billing_header values (NULL,'$_POST[full_name]', '$_POST[bill_type_header]','$_POST[bill_date]', '$_POST[bill_no]')") or die(mysqli_error($link));     
+    mysqli_query($link,"insert into billing_header values (NULL,'$_POST[full_name]', '$_POST[bill_type_header]','$_POST[bill_date]', '$_POST[bill_no]','$_SESSION[admin]')") or die(mysqli_error($link));     
      $res = mysqli_query($link,"select * from billing_header order by id desc limit 1"); 
      while($row =mysqli_fetch_assoc($res)){
          $lastbillno = $row['id']; 

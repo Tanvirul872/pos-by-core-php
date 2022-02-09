@@ -21,32 +21,6 @@ include "../user/connection.php";
 
             <div class="row">
                 See Purchase Report 
-                <div class="col-12 grid-margin stretch-card">
-
-                <!-- <form class="form-inline" action="form1" method="post">
-                  <div class="form-group">
-                      <label for="email">Select Start Date  </label>
-                      <input type="text" name="dt" id="dt" atocomplete="off" placeholder="click here to open the calender" class="form-control">
-                  </div>
-                  <div class="form-group">
-                      <label for="email">Select End Date  </label>
-                      <input type="text" name="dt2" id="dt2" atocomplete="off" placeholder="click here to open the calender" class="form-control">
-                  </div>
-                  <p>Date: <input type="text" id="datepicker"></p>
-                 
-                
-
-                  
-
-
-                  <p>Enter Date: <input type = "text" id = "datepicker-13"></p>
-
-                  
-                  <button type="submit" name="submit1" class="btn btn-success">Show purchase from this dates</button>
-                  <button type="button" name="submit2" class="btn btn-warning" onclick="window.location.href=window.location.href" >  Clear Searh  </button>
-
-                </form> -->
-
                 <form class="form-inline" name="form1"  action="purchase_report.php" method="post">
                   <p>Start Date: <input type="date" id="startdate" name="startdate"></p>
                   <p>End Date: <input type="date" id="enddate" name="enddate"></p>
@@ -54,11 +28,11 @@ include "../user/connection.php";
                   <button type="button" name="submit2" class="btn btn-warning" onclick="window.location.href=window.location.href" >  Clear Searh  </button>
 
                 </form>
+                <div class="col-12 grid-margin stretch-card">                   
 
                 <h2>Hello world </h2>
                 <?php 
-                  if(isset($_POST["submit1"])){   ?> 
-
+                  if(isset($_POST["submit1"])){   ?>           
                       <table class="table table-bordered">
                           <thead>
                           <tr>
