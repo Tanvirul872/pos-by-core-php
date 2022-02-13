@@ -99,8 +99,6 @@ function check_duplicate_product($product_company,$product_name,$product_unit,$p
     return $found;
 }
 
-
-
 function check_the_qty($product_company,$product_name,$product_unit,$packing_size){
 
     $qty_found =0;
