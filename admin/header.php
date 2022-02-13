@@ -163,6 +163,7 @@
             </li>
 
             <li class="nav-item menu-items">
+<<<<<<< HEAD
                 <a class="nav-link" href="product_calculator.php">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
@@ -171,6 +172,48 @@
                 </a>
             </li>
 
+=======
+                <a class="nav-link" href="return_product_list.php">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title"> View Return Products </span>
+                </a>
+            </li>
+
+            
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="#">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title"> View Reports </span>
+                </a>
+               
+            </li>  
+
+            <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="##" aria-expanded="true" aria-controls="auth">
+              <span class="menu-icon">
+                <i class="mdi mdi-security"></i>
+              </span>
+              <span class="menu-title">Reports </span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse show" id="auth" style="">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="purchase_report.php">Purchase Report </a></li>
+                <li class="nav-item"> <a class="nav-link" href="view_bills.php">Sales Report </a></li>
+                <li class="nav-item"> <a class="nav-link" href="stock_master.php">Stock Report </a></li>
+                <li class="nav-item"> <a class="nav-link" href="return_product_list.php">Return Products Report </a></li>
+                <li class="nav-item"> <a class="nav-link" href="party_report_list.php"> Party Report </a></li>
+                <li class="nav-item"> <a class="nav-link" href="expiry_report.php"> Expiry Report </a></li>
+   
+              </ul>
+            </div>
+          </li>
+>>>>>>> bebbbdb92cb4c8c671aa9fa652f9a7625e013c0a
 
             <li class="nav-item menu-items">
                 <a class="nav-link" href="pages/tables/basic-table.html">

@@ -4,6 +4,10 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <?php include "../user/connection.php" ;  ?>
+<?php 
+session_start(); 
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -58,7 +62,9 @@
                 $res=mysqli_query($link,"select * from user_registration where username='$username' && password='$password' && role='admin' && status='active'");
                 $count=mysqli_num_rows($res);
 
-                if($count>0){ ?>
+                if($count>0){
+                $_SESSION["admin"]=$username;              
+                    ?>
 
                     <script type="text/javascript" >
                         window.location="add_new_user.php" ;

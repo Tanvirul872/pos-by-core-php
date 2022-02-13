@@ -1,3 +1,14 @@
+<?php  
+session_start();  
+if(!isset($_SESSION["admin"])){
+    ?> 
+   <script type="text/javascript">
+    window.location = "index.php" ; 
+   </script>
+   <?php
+}
+?>
+
 <?php
 include "header.php";
 include "../user/connection.php";
@@ -84,13 +95,14 @@ include "../user/connection.php";
                             <tbody>
                             <?php
                             $res=mysqli_query($link,"select * from company_name");
-//                            $row=mysqli_fetch_assoc($res);
 
+                            //    $row=mysqli_fetch_assoc($res);
                             //   echo "<pre>";
                             //   print_r($row);
                             //   echo "</pre>";
 
                             while($row=mysqli_fetch_assoc($res)){ ?>
+
                                 <tr>
                                     <td> <?= $row['id'];?> </td>
                                     <td> <?= $row['company_name'];?> </td>
