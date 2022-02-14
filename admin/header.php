@@ -163,7 +163,6 @@
             </li>
 
             <li class="nav-item menu-items">
-<<<<<<< HEAD
                 <a class="nav-link" href="product_calculator.php">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
@@ -172,8 +171,7 @@
                 </a>
             </li>
 
-=======
-                <a class="nav-link" href="return_product_list.php">
+            <a class="nav-link" href="return_product_list.php">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
@@ -213,7 +211,6 @@
               </ul>
             </div>
           </li>
->>>>>>> bebbbdb92cb4c8c671aa9fa652f9a7625e013c0a
 
             <li class="nav-item menu-items">
                 <a class="nav-link" href="pages/tables/basic-table.html">
